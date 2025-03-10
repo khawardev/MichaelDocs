@@ -22,7 +22,7 @@ export default function HomePage() {
       <Card className="w-full overflow-hidden transition-all duration-200 ease-in-out ">
         <CardHeader className="text-center pb-2 ">
           <div className="flex justify-center mb-4">
-            <div className="bg-gray-500/5 p-4 rounded-xl">
+            <div className="bg-gray-500/10 p-4 rounded-xl">
               <IconFileTextSpark className="h-8 w-8 text-muted-foreground" />
             </div>
           </div>
