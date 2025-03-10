@@ -1,14 +1,12 @@
 "use client"
-
-import type React from "react"
-
+import axios from "axios";
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Send } from "lucide-react"
 import { useTypingAnimation } from "@/hooks/use-typing-animation"
-import { LuSendHorizontal } from "react-icons/lu";
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 type Message = {
   id: string
   role: "user" | "assistant"
@@ -19,55 +17,14 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [fileName, setFileName] = useState("")
+  const [fileName, setFileName] = useState("865: How to Grow (and Sell) a Data Science Consultancy.pdf")
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    // Fetch file name when component mounts and sourceId is available
-    const fetchFileName = async () => {
-      if (!sourceId) {
-        setFileName("Document")
-        return
-      }
-
-      try {
-        const response = await fetch("https://api.chatpdf.com/v1/sources/info", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "sec_MjmhIe1B4RCy5ZbPltRD5gUcr4sfC898",
-          },
-          body: JSON.stringify({ sourceId }),
-        })
-
-        if (response.ok) {
-          const data = await response.json()
-          setFileName(data.name || "Document")
-        } else {
-          setFileName("Document")
-        }
-      } catch (error) {
-        console.error("Error fetching file name:", error)
-        setFileName("Document")
-      }
-    }
-
-    fetchFileName()
-
-    // Focus the input field when the component mounts
-    inputRef.current?.focus()
-  }, [sourceId])
-
-  useEffect(() => {
-    // Scroll to bottom when messages change
-    scrollToBottom()
-  }, []) // Removed unnecessary dependency: messages
-
-  const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+  }, [messages])
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -84,30 +41,38 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
     setInput("")
     setIsLoading(true)
 
-    try {
-      const response = await fetch("https://api.chatpdf.com/v1/chats/message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "sec_MjmhIe1B4RCy5ZbPltRD5gUcr4sfC898",
+    let header = {
+      headers: {
+        "x-api-key": `${process.env.NEXT_PUBLIC_CHATPDF_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+    };
+    let body: any = {
+      sourceId: sourceId,
+      messages: [
+        {
+          role: "user",
+          content: input,
         },
-        body: JSON.stringify({
-          sourceId,
-          messages: [
-            {
-              role: "user",
-              content: input,
-            },
-          ],
-        }),
-      })
+      ],
+    };
+    try {
+      const response = await axios
+        .post("https://api.chatpdf.com/v1/chats/message", body, header)
+        .then((response: any) => {
+          return response.data.content;
+        })
+        .catch((error: any) => {
+          console.error("Error:", error.message);
+          console.log("Response:", error.response.data);
+        });
+      console.log(response, 'response -----------');
 
-      if (response.ok) {
-        const data = await response.json()
+      if (response) {
         const assistantMessage: Message = {
           id: Date.now().toString(),
           role: "assistant",
-          content: data.content || "Sorry, I couldn't process your request.",
+          content: response || "Sorry, I couldn't process your request.",
         }
 
         setMessages((prev) => [...prev, assistantMessage])
@@ -159,9 +124,9 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
           )}
           {isLoading && (
             <div className="flex justify-start w-full">
-              <div className="message-bubble assistant-message">
-                <div className="flex items-center space-x-2">
-                  <div className="typing-indicator">
+              <div className="message-bubble assistant-message ">
+                <div className="flex items-center space-x-2 ">
+                  <div className="typing-indicator py-1.5">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -189,7 +154,7 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
             type="submit"
             size="icon"
             disabled={isLoading}
-            className=" rounded-full  transition-all duration-200 p-3 flex items-center justify-center"
+            className=" rounded-full  transition-all duration-200 size-11 p-3 flex items-center justify-center"
           >
             <Send className="size-10 " />
           </Button>
@@ -201,12 +166,16 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
 
 function MessageBubble({ message }: { message: Message }) {
   const isAssistant = message.role === "assistant"
-  const { displayText, isComplete } = useTypingAnimation(message.content, isAssistant ? 30 : 0)
+  const { displayText, isComplete } = useTypingAnimation(message.content, isAssistant ? 10 : 0)
 
   return (
     <div className={`flex w-full ${isAssistant ? "justify-start" : "justify-end"}`}>
-      <div className={`message-bubble ${isAssistant ? "assistant-message" : "user-message"}`}>
-        {isAssistant ? displayText : message.content}
+      <div className={`message-bubble ${isAssistant ? "assistant-message " : "user-message"}`}>
+        {isAssistant ? <div className=" space-y-3 markdown-body ">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{displayText}</ReactMarkdown>
+        </div> :
+          message.content
+        }
       </div>
     </div>
   )

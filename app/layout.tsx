@@ -6,7 +6,7 @@ import { Inter } from "next/font/google"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "ChatPDF Interface",
+  title: "Michael Docs Interface",
   description: "Chat with your PDF documents",
   generator: 'v0.dev'
 }
