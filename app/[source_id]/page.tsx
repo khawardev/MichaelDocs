@@ -14,7 +14,7 @@ export default function ChatPage() {
     <div className="flex flex-col h-screen ">
       <main className="flex items-center justify-center h-full ">
         <div className="w-full">
-          <ChatInterface sourceId={sourceId} />
+          <ChatInterface sourceId={'src_ycexNHY5tKgHbwiVKiYAN'} />
         </div>
       </main>
     </div>

@@ -7,6 +7,7 @@ import { Send } from "lucide-react"
 import { useTypingAnimation } from "@/hooks/use-typing-animation"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { PiPaperPlaneTiltFill } from "react-icons/pi";
 type Message = {
   id: string
   role: "user" | "assistant"
@@ -102,7 +103,7 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
   }
 
   return (
-    <div className="flex flex-col   h-[95vh]  pb-1  overflow-hidden">
+    <div className="flex flex-col   h-[85vh]  pb-1  overflow-hidden">
       {/* File name header */}
       <div className="text-center ">
         <h2 className="text-lg font-semibold mb-4">{fileName}</h2>
@@ -156,7 +157,7 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
             disabled={isLoading}
             className=" rounded-full  transition-all duration-200 size-11 p-3 flex items-center justify-center"
           >
-            <Send className="size-10 " />
+            <PiPaperPlaneTiltFill className="size-10 " />
           </Button>
         </form>
       </div>

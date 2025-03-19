@@ -1,4 +1,5 @@
 @import url("./markdown.css");
+@import url("./mixins.css");
 
 @tailwind base;
 @tailwind components;

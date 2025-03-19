@@ -9,12 +9,13 @@ export async function fetchYoutubeData() {
   try {
     const records = await base(process.env.AIRTABLE_TABLE_NAME as string)
       .select({
-        maxRecords: 1000, // Limit to 10 records, adjust as needed
+        maxRecords: 15,
         view: "Grid view",
+        sort: [{ field: "Date", direction: "desc" }],
         fields: [
           "Date",
           "Channel Title",
-          "Channel Url",
+          "Video Thumbnail",
           "Video Title",
           "Video URL",
           "Video Transcript",
@@ -34,7 +35,22 @@ export async function fetchYoutubeData() {
 
     return records.map((record) => ({
       id: record.id,
-      fields: record.fields,
+      date: record.fields["Date"] || "N/A",
+      channelTitle: record.fields["Channel Title"] || "N/A",
+      videoTitle: record.fields["Video Title"] || "N/A",
+      videoThumbnail: record.fields["Video Thumbnail"] || "#",
+      videoUrl: record.fields["Video URL"] || "#",
+      videoTranscript: record.fields["Video Transcript"] || "N/A",
+      videoSummary: record.fields["Video Summary"] || "N/A",
+      peopleDatabase: record.fields["PeopleDatabase"] || "N/A",
+      toolDatabase: record.fields["ToolDatabase"] || "N/A",
+      caseStudies: record.fields["CaseStudies"] || "N/A",
+      useCases: record.fields["UseCases"] || "N/A",
+      summary: record.fields["Summary"] || "N/A",
+      implications: record.fields["Implications"] || "N/A",
+      articleIdeas: record.fields["ArticleIdeas"] || "N/A",
+      opportunities: record.fields["Opportunities"] || "N/A",
+      risks: record.fields["Risks"] || "N/A",
     }));
   } catch (error) {
     console.error("Error fetching Airtable data:", error);
