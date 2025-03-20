@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { ExternalLink } from "lucide-react";
 import { YoutubeCard } from "./youtube-card";
+import { FaYoutube } from "react-icons/fa";
 
 const GetYoutubeData = ({ youtubeData, more, limit }: any) => {
     const dataToDisplay = limit ? youtubeData.slice(0, limit) : youtubeData;
@@ -17,7 +18,7 @@ const GetYoutubeData = ({ youtubeData, more, limit }: any) => {
             ) : (
                 <section className="space-y-4 " >
                     {more && <div className=" flex-row-reverse flex">
-                        <Link href={'/all-youtube-videos'} ><Button size={'sm'} className=" rounded-full " >more <ExternalLink /> </Button></Link>
+                            <Link href={'/all-youtube-videos'} ><Button className=" font-bold  " > <FaYoutube className="mt-0.5" /> youtube </Button></Link>
                     </div>
                     }
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

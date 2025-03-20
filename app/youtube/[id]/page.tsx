@@ -16,7 +16,7 @@ export default function YoutubeDetailPage({ params }: YoutubeDetailPageProps) {
     if (isLoading || !youtubeDataByID) return <Spinner height={'h-[87vh]'}/>;
 
     return (
-        <div className="container relative mx-auto md:py-6 pt-6 px-4">
+        <div className="container relative mx-auto md:py-6 pt-6 md:px-6 px-4">
             <div className="flex flex-col lg:flex-row gap-6">
                 <main className="w-full lg:w-2/3 ">
                     <YoutubeDetail data={youtubeDataByID} />
