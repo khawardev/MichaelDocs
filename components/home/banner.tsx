@@ -17,10 +17,10 @@ const Banner = () => {
         }
     }
     return (
-        <Card className="space-y-7 w-full md:py-40  py-20   text-center  flex-col  bg-foreground rounded-3xl  transition-all duration-200 ease-in-out ">
-            <CardTitle className="md:hidden block  md:text-8xl text-5xl leading-[60px] font-bold  text-background tracking-[-3px] md:tracking-[-6px] ">Michael Docs </CardTitle>
+        <Card className="space-y-7 relative w-full md:py-40  py-20   text-center  flex-col  bg-foreground rounded-3xl  transition-all duration-200 ease-in-out ">
+            <CardTitle className="md:hidden block z-10  md:text-8xl text-5xl leading-[60px] font-bold  text-background tracking-[-3px] md:tracking-[-6px] ">Michael Docs </CardTitle>
             <form onSubmit={handleSubmit}>
-                <div className="space-y2 md-flex-center w-full  gap-2">
+                <div className="space-y2 md-flex-center w-full z-10 gap-2">
                     <Input
                         id="sourceId"
                         placeholder="Enter source ID..."
@@ -41,7 +41,8 @@ const Banner = () => {
                     </Button>
                 </div>
             </form>
-            <CardTitle className="md:block hidden md:text-8xl text-5xl leading-[60px] font-base  text-background tracking-[-3px] md:tracking-[-6px] ">Michael Docs </CardTitle>
+            <CardTitle className="md:block hidden z-50 md:text-8xl text-5xl leading-[60px] font-base  text-background tracking-[-3px] md:tracking-[-6px] ">Michael Docs </CardTitle>
+
         </Card>
     )
 }

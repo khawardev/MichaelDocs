@@ -40,8 +40,6 @@ export const fetchYoutubeData = (async function () {
 });
 
 
-// ... existing code ...
-
 export const fetchYoutubeDataByID = (async function (id: string) {
   try {
     const record = await base(process.env.AIRTABLE_TABLE_NAME as string).find(id);

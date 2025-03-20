@@ -21,7 +21,6 @@ export function getYoutubeSwr() {
     }
 }
 
-
 export function getYoutubeDataIDSwr(id: string) {
     const { data: allData, error, isLoading } = useSWR(['youtubeDataID', id], () => youtubeDataIDfetcher(id));
     return {

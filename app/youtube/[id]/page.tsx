@@ -9,12 +9,11 @@ interface YoutubeDetailPageProps {
         id: string
     }
 }
-
-export default  function YoutubeDetailPage({ params }: YoutubeDetailPageProps) {
+export default function YoutubeDetailPage({ params }: YoutubeDetailPageProps) {
 
     const { youtubeDataByID, isLoading, isError } = getYoutubeDataIDSwr(params.id)
     if (isError) return <div>Failed to load</div>;
-    if (isLoading || !youtubeDataByID) return <Spinner/>;
+    if (isLoading || !youtubeDataByID) return <Spinner />;
 
     return (
         <div className="container relative mx-auto py-6 px-4">
@@ -23,7 +22,11 @@ export default  function YoutubeDetailPage({ params }: YoutubeDetailPageProps) {
                     <YoutubeDetail data={youtubeDataByID} />
                 </main>
                 <aside className="w-full lg:w-1/3 lg:sticky lg:top-24 lg:self-start rounded-3xl  py-2">
-                    <ChatInterface videoTitle={youtubeDataByID.videoTitle} sourceId={youtubeDataByID.source_id} />
+                    {youtubeDataByID?.source_id ? <ChatInterface videoTitle={youtubeDataByID.videoTitle} sourceId={youtubeDataByID.source_id} /> :
+                        <main className=' flex-center h-[80vh]'>
+                            <span className=" text-muted-foreground text-sm ">Sorry we can't able to Chat with this video !!</span>
+                        </main>
+                    }
                 </aside>
             </div>
         </div>

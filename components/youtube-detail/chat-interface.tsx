@@ -1,14 +1,12 @@
 "use client"
 import axios from "axios";
-import { useState, useEffect, useRef } from "react"
+import { useState,  useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Send } from "lucide-react"
 import { useTypingAnimation } from "@/hooks/use-typing-animation"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { PiPaperPlaneTiltFill } from "react-icons/pi";
-import { Icons } from "../icons";
 type Message = {
   id: string
   role: "user" | "assistant"
@@ -94,19 +92,15 @@ export function ChatInterface({ sourceId, videoTitle }: any) {
       setMessages((prev) => [...prev, assistantMessage])
     } finally {
       setIsLoading(false)
-      // Focus the input field after sending a message
       inputRef.current?.focus()
     }
   }
 
   return (
-    <div className="flex flex-col   h-[81vh]  py-1  overflow-hidden">
-      {/* File name header */}
+    <div className="flex flex-col   h-[80vh]  py-1  overflow-hidden">
       <div className="text-center ">
         <h2 className="text-lg font-semibold mb-4">{videoTitle}</h2>
       </div>
-
-      {/* Chat messages */}
       <div
         ref={chatContainerRef}
         className="flex-grow overflow-y-auto mx-3 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent"
