@@ -12,10 +12,8 @@ interface YoutubeDetailProps {
     data: YoutubeData
 }
 
-export function YoutubeDetail({ data }: YoutubeDetailProps) {
+export function YoutubeDetail({ data }: any) {
     const videoId = getYoutubeVideoId(data.videoUrl)
-
-    // Parse structured data
     const peopleData = parseStructuredData(data.peopleDatabase, "people")
     const toolData = parseStructuredData(data.toolDatabase, "tool")
     const caseStudiesData = parseStructuredData(data.caseStudies, "caseStudies")
@@ -43,7 +41,7 @@ export function YoutubeDetail({ data }: YoutubeDetailProps) {
                         </Button>
                     </Link>
                 </div>
-                <h1 className="text-3xl font-bold">{data.videoTitle}</h1>
+                <h1 className="md:text-3xl text-2xl font-bold">{data.videoTitle}</h1>
                 <div className="flex items-center gap-2">
                     <span className="text-lg text-muted-foreground">{data.channelTitle}</span>
                 </div>

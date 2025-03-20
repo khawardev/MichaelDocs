@@ -140,10 +140,10 @@ export async function fetchYoutubeData(): Promise<YoutubeData[]> {
 }
 
 // Function to fetch a specific YouTube data entry by ID
-export async function fetchYoutubeDataById(
-  id: string
-): Promise<YoutubeData | undefined> {
-  // In a real application, you would fetch this from Airtable
-  // For now, we'll find it in the mock data
-  return mockData.find((item) => item.id === id);
-}
+// export async function fetchYoutubeDataById(
+//   id: string
+// ): Promise<YoutubeData | undefined> {
+//   // In a real application, you would fetch this from Airtable
+//   // For now, we'll find it in the mock data
+//   return mockData.find((item) => item.id === id);
+// }

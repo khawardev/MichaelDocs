@@ -15,11 +15,10 @@ type Message = {
   content: string
 }
 
-export function ChatInterface({ sourceId }: { sourceId: string }) {
+export function ChatInterface({ sourceId, videoTitle }: any) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [fileName, setFileName] = useState("865: How to Grow (and Sell) a Data Science Consultancy.pdf")
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -104,7 +103,7 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
     <div className="flex flex-col   h-[81vh]  py-1  overflow-hidden">
       {/* File name header */}
       <div className="text-center ">
-        <h2 className="text-lg font-semibold mb-4">{fileName}</h2>
+        <h2 className="text-lg font-semibold mb-4">{videoTitle}</h2>
       </div>
 
       {/* Chat messages */}
@@ -116,7 +115,7 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
           {messages.length === 0 ? (
             <div className="text-center text-muted-foreground my-12">
               <p className="md:text-lg text-sm ">Start a conversation about your document</p>
-              <p className="md:text-sm text-xs">Ask questions about the content of your PDF</p>
+              <p className="md:text-sm text-xs">Ask questions about the content of the PDF</p>
             </div>
           ) : (
             messages.map((message) => <MessageBubble key={message.id} message={message} />)

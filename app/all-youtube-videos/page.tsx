@@ -1,10 +1,10 @@
 'use client'
 import InfiniteScrollComponent from '@/components/home/InfiniteScrollComponent';
 import Loading from '@/components/loading-comp';
-import { useYoutube } from '@/hooks/get-youtube-data';
+import {getYoutubeSwr} from '@/hooks/get-youtube-swr';
 
 const YoutubePage =  () => {
-    const { youtubeData, isLoading, isError } = useYoutube()
+    const { youtubeData, isLoading, isError } = getYoutubeSwr()
     if (isError) return <div>Failed to load</div>;
 
     return (
