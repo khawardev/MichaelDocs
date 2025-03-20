@@ -7,12 +7,12 @@ interface DocsConfig {
 export const blocksConfig: DocsConfig = {
   mainNav: [
     {
-      title: "Home",
+      title: "home",
       href: "/",
     },
     {
-      title: "All Videos",
-      href: "/about",
+      title: "youtube videos",
+      href: "/all-youtube-videos",
     },
   ],
   sidebarNav: []

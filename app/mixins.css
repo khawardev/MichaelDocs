@@ -68,29 +68,6 @@
   @apply border-2  rounded-2xl   border-[#000000] shadow-[2px_2px_0_white];
 }
 
-::-webkit-scrollbar {
-  width: 11px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-  border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--foreground));
-  border-radius: 120px;
-  border: 3px solid hsl(var(--background));
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--foreground));
-}
-
-::-webkit-scrollbar-corner {
-  background: hsl(var(--background));
-}
 
 .space-y10 {
   @apply md:space-y-0 space-y-10;

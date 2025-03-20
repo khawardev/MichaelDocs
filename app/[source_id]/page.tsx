@@ -1,7 +1,7 @@
 "use client"
 
 import { useParams } from "next/navigation"
-import { ChatInterface } from "@/components/chat-interface"
+import { ChatInterface } from "@/components/youtube-detail/chat-interface"
 import { Button } from "@/components/ui/button"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"

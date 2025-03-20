@@ -8,6 +8,7 @@ import { useTypingAnimation } from "@/hooks/use-typing-animation"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { PiPaperPlaneTiltFill } from "react-icons/pi";
+import { Icons } from "../icons";
 type Message = {
   id: string
   role: "user" | "assistant"
@@ -23,9 +24,6 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
   const chatContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [messages])
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -103,7 +101,7 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
   }
 
   return (
-    <div className="flex flex-col   h-[85vh]  pb-1  overflow-hidden">
+    <div className="flex flex-col   h-[81vh]  py-1  overflow-hidden">
       {/* File name header */}
       <div className="text-center ">
         <h2 className="text-lg font-semibold mb-4">{fileName}</h2>
@@ -155,9 +153,9 @@ export function ChatInterface({ sourceId }: { sourceId: string }) {
             type="submit"
             size="icon"
             disabled={isLoading}
-            className=" rounded-full  transition-all duration-200 size-11 p-3 flex items-center justify-center"
+            className=" rounded-full  transition-all duration-200 size-11 px-4 flex items-center justify-center"
           >
-            <PiPaperPlaneTiltFill className="size-10 " />
+            <PiPaperPlaneTiltFill className="size-14 " />
           </Button>
         </form>
       </div>
@@ -170,11 +168,18 @@ function MessageBubble({ message }: { message: Message }) {
   const { displayText, isComplete } = useTypingAnimation(message.content, isAssistant ? 10 : 0)
 
   return (
-    <div className={`flex w-full ${isAssistant ? "justify-start" : "justify-end"}`}>
+    <div className={`flex w-full gap-1 ${isAssistant ? "justify-start" : "justify-end"}`}>
+      
       <div className={`message-bubble ${isAssistant ? "assistant-message " : "user-message"}`}>
-        {isAssistant ? <div className=" space-y-3 markdown-body ">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{displayText}</ReactMarkdown>
-        </div> :
+        {isAssistant ?
+          <div>
+           
+            <div className=" space-y-3 markdown-body ">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{displayText}</ReactMarkdown>
+            </div>
+          </div>
+
+          :
           message.content
         }
       </div>
