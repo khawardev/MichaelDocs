@@ -1,6 +1,6 @@
 "use client"
 import axios from "axios";
-import { useState,  useRef } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useTypingAnimation } from "@/hooks/use-typing-animation"
@@ -97,7 +97,7 @@ export function ChatInterface({ sourceId, videoTitle }: any) {
   }
 
   return (
-    <div className="flex flex-col   h-[80vh]  py-1  overflow-hidden">
+    <div className="flex flex-col   md:h-[80vh] h-[85vh]  overflow-hidden">
       <div className="text-center ">
         <h2 className="text-lg font-semibold mb-4">{videoTitle}</h2>
       </div>
@@ -131,27 +131,24 @@ export function ChatInterface({ sourceId, videoTitle }: any) {
         </div>
       </div>
 
-      {/* Input area */}
-      <div className="mx-3">
-        <form onSubmit={handleSendMessage} className="flex justify-center items-center gap-3 max-w-3xl mx-auto pt-1">
-          <Input
-            ref={inputRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Message..."
-            disabled={isLoading}
-            className="flex-grow bg-gray-100   rounded-full placeholder:text-gray-600   py-3 px-4"
-          />
-          <Button
-            type="submit"
-            size="icon"
-            disabled={isLoading}
-            className=" rounded-full  transition-all duration-200 size-11 px-4 flex items-center justify-center"
-          >
-            <PiPaperPlaneTiltFill className="size-14 " />
-          </Button>
-        </form>
-      </div>
+      <form onSubmit={handleSendMessage} className="flex justify-center items-center gap-3  pt-1">
+        <Input
+          ref={inputRef}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Message..."
+          disabled={isLoading}
+          className="flex-grow bg-gray-100   rounded-full placeholder:text-gray-600   py-3 px-4"
+        />
+        <Button
+          type="submit"
+          size="icon"
+          disabled={isLoading}
+          className=" rounded-full  transition-all duration-200 size-10 px-4 flex items-center justify-center"
+        >
+          <PiPaperPlaneTiltFill className="size-14 " />
+        </Button>
+      </form>
     </div>
   )
 }
@@ -162,16 +159,14 @@ function MessageBubble({ message }: { message: Message }) {
 
   return (
     <div className={`flex w-full gap-1 ${isAssistant ? "justify-start" : "justify-end"}`}>
-      
+
       <div className={`message-bubble ${isAssistant ? "assistant-message " : "user-message"}`}>
         {isAssistant ?
           <div>
-           
             <div className=" space-y-3 markdown-body ">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{displayText}</ReactMarkdown>
             </div>
           </div>
-
           :
           message.content
         }

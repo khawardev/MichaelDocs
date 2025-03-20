@@ -1,21 +1,16 @@
-"use client"
-
-import { useParams } from "next/navigation"
 import { ChatInterface } from "@/components/youtube-detail/chat-interface"
-import { Button } from "@/components/ui/button"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "@/components/theme-provider"
+import { fetchYoutubeDataBySourceID } from "@/actions/youtubeData-action"
 
-export default function ChatPage() {
-  const params = useParams()
-  const sourceId = params.source_id as string
-
+export default async function ChatPage({ params }: any) {
+  const youtubeDataBySourceID: any = await fetchYoutubeDataBySourceID(params?.source_id)
   return (
-    <div className="flex flex-col h-screen ">
-      <main className="flex items-center justify-center h-full ">
-        <div className="w-full">
-          <ChatInterface sourceId={'src_ycexNHY5tKgHbwiVKiYAN'} />
-        </div>
+    <div className="flex flex-col md:mt-10 mt-2 px-4">
+      <main className="flex items-center justify-center">
+        {youtubeDataBySourceID?.length !== 0 ? <ChatInterface videoTitle={youtubeDataBySourceID[0]?.videoTitle} sourceId={params?.source_id} /> :
+          <main className=' flex-center h-[60vh]'>
+            <span className=" text-muted-foreground text-sm ">Sorry we can't able to Chat with this video !!</span>
+          </main>
+        }
       </main>
     </div>
   )
