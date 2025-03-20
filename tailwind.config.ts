@@ -1,12 +1,9 @@
-import {heroui} from '@heroui/theme';
-
 export default {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@heroui/theme/dist/components/skeleton.js"
   ],
   theme: {
     extend: {
@@ -69,5 +66,5 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate"),heroui()],
+  plugins: [require("tailwindcss-animate")],
 };
