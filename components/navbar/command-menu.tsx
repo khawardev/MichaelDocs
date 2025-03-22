@@ -35,8 +35,13 @@ export function CommandMenu({ ...props }: AlertDialogProps) {
   const [videos, setVideos] = React.useState([]);
   const runCommand = React.useCallback((command: () => unknown) => {
     setOpen(false);
+    setVideos([])
     command();
   }, []);
+  const onOpenChangeDialoge = (isOpen: any) => {
+    setOpen(isOpen)
+    setVideos([])
+  }
 
   const fetchVideos = async (query: string) => {
     setLoading(true);
@@ -72,7 +77,7 @@ export function CommandMenu({ ...props }: AlertDialogProps) {
         </kbd>
         <span>Search videos...</span>
       </Button>
-      <CommandDialog open={open} onOpenChange={(isOpen) => setOpen(isOpen)}>
+      <CommandDialog open={open} onOpenChange={(isOpen) => onOpenChangeDialoge(isOpen)}>
         <CommandInput placeholder="search videos..." onKeyDown={handleSearch} />
         <CommandList>
           {loading ? (
@@ -95,7 +100,7 @@ export function CommandMenu({ ...props }: AlertDialogProps) {
                       }}
                       className="flex gap-3"
                     >
-                      <div className=" rounded-md  w-[70px] h-[40px] relative">
+                      <div className=" rounded-md w-[20%] h-[40px] relative">
                         <Image
                           src={thumbnailUrl || "/placeholder.svg"}
                           alt={video.videoTitle}
@@ -103,7 +108,7 @@ export function CommandMenu({ ...props }: AlertDialogProps) {
                           className="object-cover rounded-sm "
                         />
                       </div>
-                      <div>
+                      <div className="w-full">
                         <div className=" line-clamp-1">{video.videoTitle}</div>
                         <div className="text-xs text-muted-foreground">{video.channelTitle}</div>
                       </div>

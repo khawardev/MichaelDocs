@@ -1,12 +1,12 @@
+'use client'
 import { ChatInterface } from "@/components/youtube-detail/chat-interface"
 import { YoutubeDetail } from "@/components/youtube-detail/youtube-detail"
 import { getYoutubeDataIDSwr } from "@/hooks/get-youtube-swr"
 import Spinner from "@/components/spinner"
 
 
-export default async function  YoutubeDetailPage({ params }: any) {
-    const resolvedParams = await params;
-    const { youtubeDataByID, isLoading, isError } = getYoutubeDataIDSwr(resolvedParams?.id)
+export default  function  YoutubeDetailPage({ params }: any) {
+    const { youtubeDataByID, isLoading, isError } = getYoutubeDataIDSwr(params?.id)
     if (isError) return <div>Failed to load</div>;
     if (isLoading || !youtubeDataByID) return <Spinner height={'h-[87vh]'}/>;
 
