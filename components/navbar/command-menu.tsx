@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/command";
 import { Search } from "lucide-react";
 import Spinner from "../spinner";
-import { fetchYoutubeDataByTitle } from "@/actions/youtubeData-action";
+import { fetchYoutubeDataByTitle } from "@/actions/youtube-actions";
 import Image from "next/image";
 // ... existing code ...
 

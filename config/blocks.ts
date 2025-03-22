@@ -7,12 +7,16 @@ interface DocsConfig {
 export const blocksConfig: DocsConfig = {
   mainNav: [
     {
-      title: "home",
+      title: "Home",
       href: "/",
     },
     {
-      title: "youtube videos",
+      title: "Youtube Videos",
       href: "/all-youtube-videos",
+    },
+    {
+      title: "Pinecone Assistant",
+      href: "/pinecone-assistant",
     },
   ],
   sidebarNav: []

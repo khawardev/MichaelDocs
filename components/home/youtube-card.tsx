@@ -3,10 +3,9 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { YoutubeData } from "@/lib/data"
 import { getYoutubeVideoId, getYoutubeThumbnailUrl } from "@/lib/utils"
-import { Calendar, ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { formatDistanceToNow } from 'date-fns'
 import { Button } from "../ui/button"
 import getRelativeTime from "@/hooks/client-functions"
 
@@ -34,15 +33,16 @@ export function YoutubeCard({ data }: YoutubeCardProps) {
                     <CardTitle className="line-clamp-2 group-hover:text-primary pt-2">{data.videoTitle}</CardTitle>
                     <CardDescription className="line-clamp-1 leading-2">{data.channelTitle}</CardDescription>
                 </CardHeader>
-                <CardFooter className="flex justify-between">
+                <CardFooter className="flex relative justify-between">
                     <div className="flex items-center gap-2 text-muted-foreground mb-2">
                         <span className="text-sm">{getRelativeTime(data?.date)}</span>
                     </div>
-                    <Link target="_blank" rel="noopener noreferrer" href={data.videoUrl}>
+                    <Link target="_blank" className="absolute z-50 right-0 top-0" rel="noopener noreferrer" href={data.videoUrl}>
                         <Button
                             size={'sm'}
                             variant={'ghost'}
                             className="rounded-full text-muted-foreground"
+                            onClick={(e) => e.stopPropagation()} 
                         >
                             <ExternalLink className="h-2 w-2" />
                             watch

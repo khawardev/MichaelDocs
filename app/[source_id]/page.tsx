@@ -1,8 +1,12 @@
 import { ChatInterface } from "@/components/youtube-detail/chat-interface"
-import { fetchYoutubeDataBySourceID } from "@/actions/youtubeData-action"
+import { fetchYoutubeDataBySourceID } from "@/actions/youtube-actions"
 
 export default async function ChatPage({ params }: any) {
-  const youtubeDataBySourceID: any = await fetchYoutubeDataBySourceID(params?.source_id)
+
+  const resolvedParams = await params;
+  const sourceId = resolvedParams?.source_id;
+  const youtubeDataBySourceID: any = await fetchYoutubeDataBySourceID(sourceId);
+
   return (
     <div className="flex flex-col md:mt-10 mt-2 px-4">
       <main className="flex items-center justify-center">

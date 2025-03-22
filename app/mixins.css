@@ -9,7 +9,7 @@
 }
 
 .container-c {
-  @apply container md:px-0 px-4 md:py-32 py-10;
+  @apply container px-4  py-10;
 }
 .container-col {
   @apply container md:px-0 px-4 space-y-6  md:py-32 py-10;

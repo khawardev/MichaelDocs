@@ -11,8 +11,8 @@ export default function HomePage() {
 
   return (
     <div className="space-y-4 container mx-auto p-4">
-      <Banner />
-      {isLoading ? <div className='pt-10'><Loading /></div> : <GetYoutubeData more={true} youtubeData={youtubeData?.slice(0, 10)} />}
+       <Banner /> 
+       {isLoading ? <div className='pt-10'><Loading /></div> : <GetYoutubeData more={true} youtubeData={youtubeData?.slice(0, 10)} />} 
     </div>
   );
 }

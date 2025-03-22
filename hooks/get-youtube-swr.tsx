@@ -1,5 +1,5 @@
 'use client'
-import { fetchYoutubeData, fetchYoutubeDataByID } from "@/actions/youtubeData-action";
+import { fetchYoutubeData, fetchYoutubeDataByID } from "@/actions/youtube-actions";
 import useSWR from "swr";
 
 const youtubeDatafetcher = async () => {

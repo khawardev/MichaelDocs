@@ -23,7 +23,7 @@ export function MobileNav() {
           variant="default"
           size={'icon'}
           className="mr-2 h-7 w-7 text-base   md:hidden">
-          <Icons.hamburger className="size-4" />
+          <Icons.hamburger/>
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>

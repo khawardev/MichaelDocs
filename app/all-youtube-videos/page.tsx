@@ -1,6 +1,7 @@
 'use client'
 import InfiniteScrollComponent from '@/components/home/InfiniteScrollComponent';
 import Loading from '@/components/loading-comp';
+import StaticBanner from '@/components/staticBanner';
 import {getYoutubeSwr} from '@/hooks/get-youtube-swr';
 
 const YoutubePage =  () => {
@@ -8,9 +9,12 @@ const YoutubePage =  () => {
     if (isError) return <div>Failed to load</div>;
 
     return (
-        <div className="space-y-4 container mx-auto p-4">
-            {isLoading ? <Loading /> : <InfiniteScrollComponent allData={youtubeData} />}
-        </div>
+        <section className='container-c md:space-y-14 space-y-7 '>
+            <StaticBanner title="All Youtube Videos" badge={'Youtube'} />
+            <div className="space-y-4 ">
+                {isLoading ? <Loading /> : <InfiniteScrollComponent allData={youtubeData} />}
+            </div>
+        </section>
     );
 }
 
