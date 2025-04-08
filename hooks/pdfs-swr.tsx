@@ -5,8 +5,6 @@ import useSWR from "swr";
 
 const pdfsDatafetcher = async () => {
     const data = await fetchAirtablePdfData();
-    console.log(data, 'pdfsDatafetcher==');
-    
     return data;
 };
 export function getPDFsSwr() {

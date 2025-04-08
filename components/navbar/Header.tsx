@@ -7,7 +7,7 @@ import Blur from '../blur';
 import { usePathname } from 'next/navigation';
 export function Header() {
   const pathname = usePathname();
-  if (pathname.startsWith("/admin")) {
+  if (pathname.startsWith("/chat")) {
     return null;
   }
   return (

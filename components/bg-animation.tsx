@@ -1,6 +1,6 @@
 const BackgroundAnimation = () => {
     return (
-        <div className="absolute rounded-3xl bg-foreground inset-0 -z-10 w-full h-full overflow-hidden">
+        <div className="absolute rounded-2xl bg-foreground inset-0 -z-20 w-full h-full overflow-hidden">
             <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
                 <defs>
                     <radialGradient id="Gradient1" cx="50%" cy="50%" fx="0.441602%" fy="50%" r=".5">

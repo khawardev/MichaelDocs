@@ -1,11 +1,12 @@
 'use client'
 import { useState, useCallback } from "react";
 import { useDropzone, FileWithPath } from "react-dropzone";
-import { Upload, AlertCircle } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import PDFViewer from "./pdf-viewer";
+import { MdOutlineFileUpload } from "react-icons/md";
 
 
 export function FileUploadArea() {
@@ -34,43 +35,37 @@ export function FileUploadArea() {
         maxFiles: 1,
     });
 
- 
+
     return (
         <div className="space-y-3">
             {file && (
                 <Card className="p-0">
-                    <CardContent className="p-0">
-                        <PDFViewer
-                            url={URL.createObjectURL(file)}
-                            file={file}
-                            setFile={setFile}
-                        />
-                    </CardContent>
+                    <PDFViewer
+                        url={URL.createObjectURL(file)}
+                        file={file}
+                        setFile={setFile}
+                    />
                 </Card>
             )}
-            <div
-                {...getRootProps()}
-                className={`border-2 border-dashed rounded-2xl p-8 transition-colors duration-200 ease-in-out
-                ${isDragActive && !isDragReject ? "border-primary bg-primary/5" : "border-border hover:border-primary/50 cursor-pointer hover:bg-accent/50"}
-                ${isDragReject ? "border-red-800/50 bg-destructive/5" : ""}`}
-                >
+            <div {...getRootProps()} className={`rounded-xl   p-4 duration-200 ease-in-out ${isDragActive && !isDragReject ? "border-primary " : "border-border hover:border-primary/30 cursor-pointer  bg-destructive"} ${isDragReject ? "border-red-800/50 bg-destructive text-primary-foreground " : "bg-primary text-primary-foreground hover:bg-primary/90"}`}>
                 <input {...getInputProps()} />
-                <div className="flex flex-col items-center justify-center text-center">
-                    <Upload className="w-12 h-12 mb-4 text-muted-foreground" strokeWidth={1.5} />
-                    <p className="text-lg font-medium text-foreground">
-                        {isDragActive ? "Drop file here" : (
-                            <>
-                                <span className="sr-only md:not-sr-only">Drag a PDF file here or</span> click to upload
-                            </>
-                        )}
-                    </p>
-                    <p className="text-sm text-muted-foreground">Only PDF files are supported</p>
+                <div className="flex flex-col   items-center justify-center text-center">
+                    <MdOutlineFileUpload className="w-7 h-7 mb-1  text-muted-foreground" />
+                    <div>
+                        <p className="text-sm font-medium text-background">
+                            {isDragActive ? "Drop file here" : (
+                                <>
+                                    <span className=" mb-1 ">drag a file here</span>
+                                </>
+                            )}
+                        </p>
+                        <p className="text-xs text-muted-foreground">only PDF files are supported</p>
+                    </div>
                 </div>
             </div>
 
             {dragError && (
-                <Alert variant="destructive" className="animate-in pb-2 fade-in duration-300">
-                    <AlertCircle className="h-4 w-4" />
+                <Alert variant="destructive" className="animate-inflex-center fade-in duration-300">
                     <AlertDescription>{dragError}</AlertDescription>
                 </Alert>
             )}

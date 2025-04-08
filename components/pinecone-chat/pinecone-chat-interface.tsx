@@ -39,8 +39,6 @@ export function PineconeChatInterface() {
 
     try {
       const response: any = await queryPinecone(input);
-      console.log(response,'---response');
-      
       if (response.result) {
         const assistantMessage: Message = {
           id: Date.now().toString(),
@@ -74,10 +72,8 @@ export function PineconeChatInterface() {
   }
 
   return (
-    <div className="flex flex-col md:w-[40%] w-full   md:h-[80vh] h-[85vh]  overflow-hidden">
-      <div className="text-center ">
-        <h1 className="text-xl font-semibold mb-4">Pinecone Assistant playground</h1>
-      </div>
+    <div className="flex flex-col    md:h-[79vh] h-[82vh] w-full  overflow-hidden">
+        <h1 className="text-xl font-semibold text-center mb-4">Pinecone Assistant playground</h1>
       <div
         ref={chatContainerRef}
         className="flex-grow  overflow-y-auto  scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent"

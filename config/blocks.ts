@@ -15,7 +15,7 @@ export const blocksConfig: DocsConfig = {
       href: "/all-youtube-videos",
     },
     {
-      title: "Chat Playgorund",
+      title: "Chat Playground",
       href: "/chat-playground",
     },
   ],

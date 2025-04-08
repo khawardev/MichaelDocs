@@ -10,9 +10,8 @@ export default function PDFUploadsChats() {
     return (
         <>
             <FileUploadArea />
-            {isLoading ? <div className="h-48"><Spinner /></div> : 
+            {isLoading ? <div className="h-48 flex-center"><Spinner /></div> : 
                 <div className="flex flex-col">
-                    <p className="text-sm font-bold text-foreground">Uploaded files</p>
                     {pdfsData?.map((file: any, index: number) => (
                         <PdfsFiles key={index} file={file} />
                     ))}

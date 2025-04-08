@@ -7,7 +7,7 @@ const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
 
 export const fetchYoutubeData = (async function () {
   try {
-    const records = await base(process.env.AIRTABLE_TABLE_NAME as string)
+    const records = await base(process.env.AIRTABLE_YOUTUBE_TABLE_NAME as string)
       .select({
         view: "Grid view",
         fields: ["Date", "Channel Title", "Video Title", "Video URL", "PDF Source ID",
@@ -31,7 +31,7 @@ export const fetchYoutubeData = (async function () {
 
 export const fetchYoutubeDataByID = (async function (id: string) {
   try {
-    const record = await base(process.env.AIRTABLE_TABLE_NAME as string).find(id);
+    const record = await base(process.env.AIRTABLE_YOUTUBE_TABLE_NAME as string).find(id);
 
     return {
       id: record.id,
@@ -61,7 +61,7 @@ export const fetchYoutubeDataByID = (async function (id: string) {
 
 export const fetchYoutubeDataByTitle = async function (query: string) {
   try {
-    const records = await base(process.env.AIRTABLE_TABLE_NAME as string)
+    const records = await base(process.env.AIRTABLE_YOUTUBE_TABLE_NAME as string)
       .select({
         view: "Grid view",
         fields: ["Channel Title", "Video URL", "Video Title",
@@ -91,7 +91,7 @@ export const fetchYoutubeDataByTitle = async function (query: string) {
 
 export const fetchYoutubeDataBySourceID = async function (query: string) {
   try {
-    const records = await base(process.env.AIRTABLE_TABLE_NAME as string)
+    const records = await base(process.env.AIRTABLE_YOUTUBE_TABLE_NAME as string)
       .select({
         view: "Grid view",
         fields: ["Video Title", "PDF Source ID"],

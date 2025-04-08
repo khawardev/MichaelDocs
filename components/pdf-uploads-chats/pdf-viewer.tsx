@@ -10,6 +10,7 @@ import { uploadPDF } from "@/actions/pdf-actions";
 import { GrUploadOption } from "react-icons/gr";
 import { PiFilePdfFill } from "react-icons/pi";
 import { toast } from "sonner";
+import { mutate } from "swr";
 
 interface PDFViewerProps {
     file: any;
@@ -20,13 +21,14 @@ interface PDFViewerProps {
 const PdfViewDialog = ({ file, url }: PDFViewerProps) => {
     const [open, setOpen] = useState(false);
     const getDirectLink = (driveUrl: string) => {
-        const match = driveUrl.match(/\/d\/(.*?)\//);
+        const match = driveUrl?.match(/\/d\/(.*?)\//);
         return match ? `https://drive.google.com/uc?export=view&id=${match[1]}` : driveUrl;
     };
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button
+
                     className="rounded-full md:w-20 w-full"
                 >
                     <PiFilePdfFill size={8} />
@@ -62,26 +64,27 @@ export default function PDFViewer({ file, url, setFile }: PDFViewerProps) {
     const handlePdfUpload = async () => {
         setuploading(true);
         await uploadPDF(file, formatDate(new Date()), formatFileSize(file?.size));
+        mutate('pdfsData');
         setuploading(false);
         setFile(null);
         toast.success('Pdf has been uploaded')
     };
     return (
-        <div className="py-3   md:px-3 px-0 md:flex  space-y3 items-center justify-between  transition-colors">
-            <div className="flex items-center space-x-3 ">
-                <div className=" w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
-                    <FileText className="w-5 h-5 text-primary" />
+        <div className=" w-full px-1 items-center justify-between transition-colors">
+            <div className="flex items-center space-x-2 ">
+                <div className=" w-10 h-10  flex items-center justify-center">
+                    <PiFilePdfFill size={17} />
                 </div>
-                <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-foreground line-clamp-1">{file?.name}</p>
-                    <div className="flex items-center text-xs text-muted-foreground space-x-2">
-                        <span className="sr-only md:not-sr-only"></span> {formatDate(new Date())}
-                        <span className="inline-block w-1 h-1 rounded-full bg-muted-foreground/50"></span>
-                        <span>{formatFileSize(file?.size)}</span>
+                <div  >
+                    <p className="text-xs font-medium text-foreground w-full  line-clamp-1">{file?.name}</p>
+                    <div className="flex items-center justify-between space-x-5 text-xs text-muted-foreground ">
+                        <p className="sr-only md:not-sr-only text-xs">{formatDate(new Date())}</p>
+                        <p className=' text-xs'>{formatFileSize(file?.size)}</p>
                     </div>
                 </div>
             </div>
-            <div className="  md:flex items-center space-y2 gap-2">
+
+            <div className=" flex items-center justify-bewteen space-y2 gap-2 mt-1">
                 <PdfViewDialog file={file} url={url} />
                 <Button
                     disabled={uploading}
@@ -90,9 +93,11 @@ export default function PDFViewer({ file, url, setFile }: PDFViewerProps) {
                 >
                     <Loader loadingstate={uploading} icon={<GrUploadOption size={4} />} actualtext={'Upload'} isloadtext={'Uploading'} />
                 </Button>
-                <Button variant="ghost" onClick={() => (setFile(null))}  className="h-8 w-8 ">
-                    <X className="h-4 w-4" />
-                </Button>
+                {!uploading &&
+                    <Button variant="ghost" onClick={() => (setFile(null))} >
+                        <X className="h-4 w-4" />
+                    </Button>
+                }
             </div>
 
         </div>
