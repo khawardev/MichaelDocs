@@ -97,7 +97,7 @@ export function ChatInterface({ sourceId, videoTitle }: any) {
   }
 
   return (
-    <div className="flex flex-col   md:h-[80vh] h-[85vh]  overflow-hidden">
+    <div className="flex flex-col w-full   md:h-[80vh] h-[85vh]  overflow-hidden">
       <div className="text-center ">
         <h2 className="text-lg font-semibold mb-4 ">{videoTitle}</h2>
       </div>

@@ -2,7 +2,7 @@
 import InfiniteScrollComponent from '@/components/home/InfiniteScrollComponent';
 import Loading from '@/components/loading-comp';
 import StaticBanner from '@/components/staticBanner';
-import {getYoutubeSwr} from '@/hooks/get-youtube-swr';
+import {getYoutubeSwr} from '@/hooks/youtube-swr';
 
 const YoutubePage =  () => {
     const { youtubeData, isLoading, isError } = getYoutubeSwr()

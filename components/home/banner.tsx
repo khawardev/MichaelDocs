@@ -7,6 +7,7 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { PiPaperPlaneTiltFill } from 'react-icons/pi'
 import { LuLoaderCircle } from 'react-icons/lu'
+import BackgroundAnimation from '../bg-animation'
 
 const Banner = () => {
     const [sourceId, setSourceId] = useState("")
@@ -23,7 +24,8 @@ const Banner = () => {
     };
 
     return (
-        <Card className="space-y-7 relative w-full md:py-40  py-20   text-center  flex-col  bg-foreground rounded-3xl  transition-all duration-200 ease-in-out ">
+        <Card className="space-y-7 relative w-full md:py-40  py-20   text-center  flex-col  rounded-3xl  transition-all duration-200 ease-in-out ">
+            <BackgroundAnimation />
             <CardTitle className="md:hidden block z-10  md:text-8xl text-5xl leading-[60px] font-bold  text-background tracking-[-3px] md:tracking-[-6px] ">Michael Docs </CardTitle>
             <form onSubmit={handleSubmit}>
                 <div className="space-y2 md-flex-center w-full z-10 gap-2">

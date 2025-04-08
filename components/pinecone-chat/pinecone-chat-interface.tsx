@@ -6,7 +6,7 @@ import { useTypingAnimation } from "@/hooks/use-typing-animation"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { PiPaperPlaneTiltFill } from "react-icons/pi";
-import { queryPinecone } from "@/actions/pinecone-actions";
+import { queryPinecone } from "@/actions/pineconeDB-actions";
 type Message = {
   id: string
   role: "user" | "assistant"

@@ -20,7 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-7 px-2.5 [&_svg]:size-4",  // SVG increased from 3.5 to 4
+        default: "h-7 px-2.5 [&_svg]:size-3.5",  // SVG increased from 3.5 to 4
         sm: "h-6 rounded-lg px-2 [&_svg]:size-3.5", // Added SVG sizing
         lg: "h-9 rounded-lg px-6 [&_svg]:size-5",   // SVG increased from none to 5
         icon: "h-7 w-7  [&_svg]:size-4",            // SVG increased from none to 6

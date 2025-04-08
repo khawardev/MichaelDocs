@@ -16,7 +16,7 @@ export function DesktopNav() {
   return (
     <div className="md:flex  hidden w-full justify-between  items-center  ">
       <Link href="/" className="mr-6   flex items-center space-x-2">
-        <span  ><Icons.logo  size={20} /></span>
+        {/* <span  ><Icons.logo  size={20} /></span> */}
         <p className="hidden text-xl font-extrabold tracking-tighter sm:inline-block">
           {siteConfig.name}
         </p>

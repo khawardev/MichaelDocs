@@ -15,8 +15,8 @@ export const blocksConfig: DocsConfig = {
       href: "/all-youtube-videos",
     },
     {
-      title: "Pinecone Assistant",
-      href: "/pinecone-assistant",
+      title: "Chat Playgorund",
+      href: "/chat-playground",
     },
   ],
   sidebarNav: []

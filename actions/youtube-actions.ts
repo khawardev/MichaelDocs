@@ -14,7 +14,6 @@ export const fetchYoutubeData = (async function () {
         ],
       })
       .all();
-    console.log('getted records');
 
     return records.map((record) => ({
       id: record.id, date: record.fields["Date"] || "N/A", channelTitle: record.fields["Channel Title"] || "N/A",
@@ -69,7 +68,6 @@ export const fetchYoutubeDataByTitle = async function (query: string) {
         ],
       })
       .all();
-    console.log('getted records');
     const lowerCaseQuery = query.toLowerCase();
     const filteredRecords = records.filter(record => {
       const videoTitleField = record.fields["Video Title"];
@@ -99,7 +97,6 @@ export const fetchYoutubeDataBySourceID = async function (query: string) {
         fields: ["Video Title", "PDF Source ID"],
       })
       .all();
-    console.log('getted records');
 
     const lowerCaseQuery = query.toLowerCase();
     const filteredRecords = records.filter(record => {
@@ -119,3 +116,7 @@ export const fetchYoutubeDataBySourceID = async function (query: string) {
     return [];
   }
 };
+
+
+
+

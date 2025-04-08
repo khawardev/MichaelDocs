@@ -1,7 +1,7 @@
 'use client'
 import { ChatInterface } from "@/components/youtube-detail/chat-interface"
 import { YoutubeDetail } from "@/components/youtube-detail/youtube-detail"
-import { getYoutubeDataIDSwr } from "@/hooks/get-youtube-swr"
+import { getYoutubeDataIDSwr } from "@/hooks/youtube-swr"
 import Spinner from "@/components/spinner"
 
 
